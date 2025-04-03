@@ -1,0 +1,341 @@
+/* ===== Base Styles ===== */
+:root {
+    --primary-color: #4361ee;
+    --primary-dark: #3a56d4;
+    --secondary-color: #3f37c9;
+    --accent-color: #4895ef;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --gray-color: #6c757d;
+    --success-color: #4bb543;
+    --error-color: #ff3333;
+    --border-radius: 12px;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Sofia", sans-serif;
+    background: url('https://static.vecteezy.com/system/resources/previews/011/508/381/original/movie-film-banner-design-template-cinema-background-concept-cinema-concept-with-popcorn-filmstrip-and-film-clapper-on-yellow-background-illustration-free-vector.jpg') center/cover no-repeat fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    line-height: 1.6;
+    color: var(--dark-color);
+}
+
+/* ===== Auth Container ===== */
+.auth-container {
+    width: 100%;
+    max-width: 400px; /* Reduced from 480px */
+    perspective: 1000px;
+}
+
+.login-container,
+.signup-container {
+    background: #B3A4B8;
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem; /* Reduced from 2.5rem */
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-container:hover,
+.signup-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Decorative elements */
+.login-container::before,
+.signup-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+    opacity: 0.05;
+    z-index: -1;
+}
+
+/* ===== Header ===== */
+.auth-header {
+    text-align: center;
+    margin-bottom: 1.5rem; /* Reduced from 2.5rem */
+}
+
+.auth-header h1 {
+    font-size: 1.75rem; /* Reduced from 2rem */
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.auth-header p {
+    color: var(--gray-color);
+    font-size: 0.85rem; /* Reduced from 0.9rem */
+}
+
+/* ===== Form Elements ===== */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Reduced from 1.5rem */
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.4rem; /* Reduced from 0.5rem */
+    font-size: 0.85rem; /* Reduced from 0.9rem */
+    font-weight: 500;
+    color: var(--dark-color);
+    transition: var(--transition);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.85rem 1rem; /* Reduced from 1rem 1.25rem */
+    border: 2px solid #e9ecef;
+    border-radius: var(--border-radius);
+    font-size: 0.95rem; /* Reduced from 1rem */
+    transition: var(--transition);
+    background-color: #f8f9fa;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+.input-group input::placeholder {
+    color: #adb5bd;
+}
+
+/* Name fields group */
+.name-group {
+    display: flex;
+    gap: 0.75rem; /* Reduced from 1rem */
+}
+
+.half-width {
+    flex: 1;
+}
+
+/* Password hint */
+.password-hint {
+    font-size: 0.7rem; /* Reduced from 0.75rem */
+    color: var(--gray-color);
+    margin-top: 0.4rem; /* Reduced from 0.5rem */
+    opacity: 0.8;
+}
+
+/* Options (remember me & forgot password) */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem; /* Added for better spacing */
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem; /* Reduced from 0.5rem */
+}
+
+.remember-me input[type="checkbox"] {
+    appearance: none;
+    width: 16px; /* Reduced from 18px */
+    height: 16px; /* Reduced from 18px */
+    border: 2px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition);
+}
+
+.remember-me input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.remember-me input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 0.7rem; /* Reduced from 0.8rem */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.remember-me label {
+    font-size: 0.85rem; /* Reduced from 0.9rem */
+    color: var(--gray-color);
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.85rem; /* Reduced from 0.9rem */
+    transition: var(--transition);
+}
+
+.forgot-password:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* ===== Button ===== */
+.auth-button {
+    width: 100%;
+    padding: 0.85rem; /* Reduced from 1rem */
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 0.95rem; /* Reduced from 1rem */
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.5rem; /* Added for better spacing */
+}
+
+.auth-button:hover {
+    background: linear-gradient(to right, var(--primary-dark), var(--secondary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+}
+
+.auth-button:active {
+    transform: translateY(0);
+}
+
+.auth-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.auth-button:hover::after {
+    transform: translateX(100%);
+}
+
+/* ===== Switch Auth ===== */
+.switch-auth {
+    text-align: center;
+    margin-top: 1rem; /* Reduced from 1.5rem */
+    color: var(--gray-color);
+    font-size: 0.85rem; /* Reduced from 0.9rem */
+}
+
+.switch-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    margin-left: 0.25rem;
+}
+
+.switch-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* ===== Error Handling ===== */
+.input-error {
+    border-color: var(--error-color) !important;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.75rem; /* Reduced from 0.8rem */
+    margin-top: 0.4rem; /* Reduced from 0.5rem */
+    display: block;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 600px) {
+    body {
+        padding: 0.5rem; /* Reduced from 1rem */
+    }
+
+    .auth-container {
+        padding: 0.5rem; /* Reduced from 1rem */
+    }
+
+    .login-container,
+    .signup-container {
+        padding: 1.25rem; /* Reduced from 1.5rem */
+    }
+
+    .name-group {
+        flex-direction: column;
+        gap: 0.75rem; /* Reduced from 1rem */
+    }
+
+    .options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem; /* Reduced from 1rem */
+    }
+
+    .forgot-password {
+        margin-top: 0.4rem; /* Reduced from 0.5rem */
+    }
+}
+
+/* ===== Animation Effects ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.login-container,
+.signup-container {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Floating animation for visual interest */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.auth-container:hover .login-container,
+.auth-container:hover .signup-container {
+    animation: float 3s ease-in-out infinite;
+}
