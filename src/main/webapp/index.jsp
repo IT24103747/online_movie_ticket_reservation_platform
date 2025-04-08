@@ -40,7 +40,7 @@
         </form>
 
         <div class="switch-auth">
-            Don't have an account? <a href="login/html/signup.jsp" class="switch-link">Sign Up</a>
+            Don't have an account? <a href="signup.jsp" class="switch-link">Sign Up</a>
         </div>
     </div>
 </div>
