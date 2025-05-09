@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+  <display-name>Online Movie Ticket Reservation Platform</display-name>
+
+  <!-- Welcome File List -->
+  <welcome-file-list>
+    <welcome-file>pages/index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <!-- Servlet Definitions -->
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>controllers.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FeedbackServlet</servlet-name>
+    <servlet-class>controllers.FeedbackServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CustomerSupportServlet</servlet-name>
+    <servlet-class>controllers.CustomerSupportServlet</servlet-class>
+  </servlet>
+
+  <!-- Servlet Mappings -->
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FeedbackServlet</servlet-name>
+    <url-pattern>/FeedbackServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CustomerSupportServlet</servlet-name>
+    <url-pattern>/CustomerSupportServlet</url-pattern>
+  </servlet-mapping>
+
+</web-app>
