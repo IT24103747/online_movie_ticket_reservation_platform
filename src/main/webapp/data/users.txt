@@ -1,0 +1,4 @@
+admin1,adminpass,admin
+user1,userpass,user
+admin2,adminpass2,admin
+user2,userpass2,user
