@@ -1,21 +1,31 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.example</groupId>
-  <artifactId>online_movie_ticket_reservation_platform</artifactId>
-  <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>online_movie_ticket_reservation_platform Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-  <build>
-    <finalName>online_movie_ticket_reservation_platform</finalName>
-  </build>
-</project>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+  <display-name>Movie Ticket Booking System</display-name>
+
+  <servlet>
+    <servlet-name>ReserveTicketServlet</servlet-name>
+    <servlet-class>servlet.ReserveTicketServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReserveTicketServlet</servlet-name>
+    <url-pattern>/ReserveTicketServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AdminViewReservationsServlet</servlet-name>
+    <servlet-class>servlet.AdminViewReservationsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminViewReservationsServlet</servlet-name>
+    <url-pattern>/AdminViewReservationsServlet</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>reserveTicket.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

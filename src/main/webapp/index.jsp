@@ -1,50 +1,24 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="login/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Movie Reservation System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-<div class="auth-container">
-    <!-- Logo Section -->
-    <div class="logo-container" style="text-align: center; margin-bottom: 20px;">
-
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+<div class="bg-white p-10 rounded shadow-md w-full max-w-md text-center">
+    <h1 class="text-3xl font-bold mb-6 text-indigo-700">Welcome to Movie Reservation System</h1>
+    <div class="space-y-4">
+        <a href="reserveTicket.jsp" class="block bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition">
+            Reserve a Ticket
+        </a>
+        <a href="AdminViewReservationsServlet" class="block bg-gray-800 text-white px-6 py-3 rounded hover:bg-gray-900 transition">
+            Admin: View All Reservations
+        </a>
     </div>
-
-    <div class="login-container" id="loginContainer">
-        <h1>Login</h1>
-
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-
-            <div class="options">
-                <div class="remember-me">
-                    <input type="checkbox" id="remember" name="remember">
-                    <label for="remember">Remember Me</label>
-                </div>
-                <a href="#" class="forgot-password">Forget Password</a>
-            </div>
-
-            <button type="submit" class="auth-button">Login</button>
-        </form>
-
-        <div class="switch-auth">
-            Don't have an account? <a href="login/html/signup.jsp" class="switch-link">Sign Up</a>
-        </div>
-    </div>
+    <p class="mt-8 text-gray-500 text-sm">
+        &copy; <%= java.time.Year.now() %> Movie Reservation System
+    </p>
 </div>
-
-<script src="login/js/script.js"></script>
 </body>
 </html>
