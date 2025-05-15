@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Movie</title>
+    <link rel="stylesheet" href="/MovieManagement/css/movie.css">
+</head>
+<body>
+<div class="container">
+    <h1>Edit Movie</h1>
+    <form action="/MovieManagement/movies" method="post">
+        <input type="hidden" name="action" value="update">
+        <input type="hidden" name="id" value="${movie.id}">
+
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="${movie.title}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required>${movie.description}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="releaseDate">Release Date:</label>
+            <input type="date" id="releaseDate" name="releaseDate"
+                   value="${movie.releaseDate}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="available">Available:</label>
+            <select id="available" name="available">
+                <option value="true" ${movie.available ? 'selected' : ''}>Yes</option>
+                <option value="false" ${not movie.available ? 'selected' : ''}>No</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn">Update</button>
+        <a href="/MovieManagement/movies" class="btn danger">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

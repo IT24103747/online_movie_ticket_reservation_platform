@@ -1,50 +1,44 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="login/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Movie Management</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/movie.css">
 </head>
 <body>
-<div class="auth-container">
-    <!-- Logo Section -->
-    <div class="logo-container" style="text-align: center; margin-bottom: 20px;">
-
+    <div class="container">
+        <h1>Movie Management</h1>
+        <c:if test="${not empty error}">
+            <div class="error-message">${error}</div>
+        </c:if>
+        <a href="movies?action=new" class="btn">Add New Movie</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Release Date</th>
+                    <th>Available</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="movie" items="${movies}">
+                    <tr>
+                        <td>${movie.title}</td>
+                        <td>${movie.description}</td>
+                        <td>${movie.releaseDate}</td>
+                        <td>${movie.available ? 'Yes' : 'No'}</td>
+                        <td>
+                            <a href="movies?action=edit&id=${movie.id}" class="btn">Edit</a>
+                            <a href="movies?action=delete&id=${movie.id}" class="btn danger"
+                               onclick="return confirm('Are you sure?')">Delete</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </div>
-
-    <div class="login-container" id="loginContainer">
-        <h1>Login</h1>
-
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-
-            <div class="options">
-                <div class="remember-me">
-                    <input type="checkbox" id="remember" name="remember">
-                    <label for="remember">Remember Me</label>
-                </div>
-                <a href="#" class="forgot-password">Forget Password</a>
-            </div>
-
-            <button type="submit" class="auth-button">Login</button>
-        </form>
-
-        <div class="switch-auth">
-            Don't have an account? <a href="login/html/signup.jsp" class="switch-link">Sign Up</a>
-        </div>
-    </div>
-</div>
-
-<script src="login/js/script.js"></script>
 </body>
 </html>
