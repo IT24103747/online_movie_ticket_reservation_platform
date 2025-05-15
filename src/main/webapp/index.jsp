@@ -1,50 +1,109 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="login/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>CineStar - Online Movie Tickets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/home/css/style.css">
 </head>
-<body>
-<div class="auth-container">
-    <!-- Logo Section -->
-    <div class="logo-container" style="text-align: center; margin-bottom: 20px;">
+<c:if test="${sessionScope.isDesignAdmin}">
+    <div id="design-controls" class="floating-controls">
+        <button id="toggleDesignPanel">
+            <i class="fas fa-palette"></i>
+        </button>
+        <div class="design-panel">
+            <h3>Design Settings</h3>
+            <form id="designForm">
+                <label>Color Scheme:</label>
+                <input type="color" name="colorScheme" value="#e50914">
 
-    </div>
+                <label>Layout:</label>
+                <select name="layout">
+                    <option value="grid">Grid</option>
+                    <option value="flex">Flex</option>
+                </select>
 
-    <div class="login-container" id="loginContainer">
-        <h1>Login</h1>
-
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-
-            <div class="options">
-                <div class="remember-me">
-                    <input type="checkbox" id="remember" name="remember">
-                    <label for="remember">Remember Me</label>
-                </div>
-                <a href="#" class="forgot-password">Forget Password</a>
-            </div>
-
-            <button type="submit" class="auth-button">Login</button>
-        </form>
-
-        <div class="switch-auth">
-            Don't have an account? <a href="login/html/signup.jsp" class="switch-link">Sign Up</a>
+                <button type="submit">Apply Changes</button>
+            </form>
         </div>
     </div>
+</c:if>
+<body>
+<!-- Login Button (Owned by User Accounts Team) -->
+<div class="login-container">
+    <a href="${pageContext.request.contextPath}/login"
+       class="login-btn"
+       data-team="user-accounts"
+       title="Managed by User Accounts Team">
+        <i class="fas fa-sign-in-alt"></i> Log In
+    </a>
 </div>
 
-<script src="login/js/script.js"></script>
+<!-- Vertical Navigation Bar (Left Side) -->
+<div class="sidebar">
+    <div class="logo">
+        <h1><i class="fas fa-star"></i> CineStar</h1>
+    </div>
+    <ul class="nav-menu">
+        <!-- Dashboard (Your Responsibility) -->
+        <li class="nav-item">
+            <a href="#" class="nav-link" id="dashboardBtn">
+                <i class="fas fa-columns"></i> Dashboard
+            </a>
+        </li>
+        <!-- Movies (Movie Management Team) -->
+        <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/movies"
+               class="nav-link"
+               data-team="movie-management">
+                <i class="fas fa-film"></i> Movies
+            </a>
+        </li>
+        <!-- Support (Support Team) -->
+        <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/support"
+               class="nav-link"
+               data-team="support">
+                <i class="fas fa-headset"></i> Support
+            </a>
+        </li>
+        <!-- Admin (User Accounts Team) -->
+        <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/admin"
+               class="nav-link"
+               data-team="user-accounts">
+                <i class="fas fa-user-shield"></i> Admin
+            </a>
+        </li>
+        <!-- Log Out (User Accounts Team) -->
+        <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/logout"
+               class="nav-link"
+               data-team="user-accounts">
+                <i class="fas fa-sign-out-alt"></i> Log Out
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Main Content Area -->
+<div class="main-content">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Experience the Magic of Cinema</h2>
+            <p>Book your favorite movies anytime, anywhere</p>
+
+            <!-- Book Now Button (Booking Team) -->
+            <a href="${pageContext.request.contextPath}/booking"
+               class="book-now-btn"
+               data-team="booking">
+                <i class="fas fa-ticket-alt"></i> Book Now
+            </a>
+        </div>
+    </section>
+</div>
+
+<script src="${pageContext.request.contextPath}/home/js/script.js"></script>
 </body>
 </html>
