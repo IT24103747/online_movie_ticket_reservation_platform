@@ -5,10 +5,10 @@ import com.moviemanagement.service.MovieService;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
-import java.io.IOException;
-import java.time.LocalDate;
+import java.io.*;
+import java.time.*;
 
-@WebServlet(name = "MovieServlet", urlPatterns = {"/movies"})
+@WebServlet("/movies")
 public class MovieServlet extends HttpServlet {
     private MovieService movieService;
 
@@ -17,51 +17,35 @@ public class MovieServlet extends HttpServlet {
         movieService = new MovieService();
     }
 
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) action = "list";
-
         try {
+            String action = request.getParameter("action");
+            if (action == null) action = "list";
+
             switch (action) {
-                case "new":
-                    showNewForm(request, response);
-                    break;
-                case "edit":
-                    showEditForm(request, response);
-                    break;
-                case "delete":
-                    deleteMovie(request, response);
-                    break;
-                default:
-                    listMovies(request, response);
+                case "new": showNewForm(request, response); break;
+                case "edit": showEditForm(request, response); break;
+                case "delete": deleteMovie(request, response); break;
+                default: listMovies(request, response);
             }
         } catch (Exception e) {
-            request.setAttribute("error", e.getMessage());
+            request.setAttribute("error", "Error: " + e.getMessage());
             request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
     }
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            response.sendRedirect(request.getContextPath() + "/movies");
-            return;
-        }
-
         try {
+            String action = request.getParameter("action");
             if ("add".equals(action)) {
                 addMovie(request, response);
             } else if ("update".equals(action)) {
                 updateMovie(request, response);
-            } else {
-                response.sendRedirect(request.getContextPath() + "/movies");
             }
         } catch (Exception e) {
-            request.setAttribute("error", e.getMessage());
+            request.setAttribute("error", "Error: " + e.getMessage());
             request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
     }
@@ -80,19 +64,11 @@ public class MovieServlet extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
-        if (id == null || id.trim().isEmpty()) {
-            request.setAttribute("error", "Missing movie ID");
-            request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
-            return;
-        }
-
         Movie movie = movieService.getMovieById(id);
         if (movie == null) {
-            request.setAttribute("error", "Movie not found with ID: " + id);
-            request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/movies");
             return;
         }
-
         request.setAttribute("movie", movie);
         request.getRequestDispatcher("/html/edit.html").forward(request, response);
     }

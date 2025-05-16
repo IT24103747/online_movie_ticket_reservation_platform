@@ -2,12 +2,12 @@
 <html>
 <head>
     <title>Edit Movie</title>
-    <link rel="stylesheet" href="/online_movie_ticket_reservation_platform/css/movie.css">
+    <link rel="stylesheet" href="/online_examination_system_war_exploded/css/movie.css">
 </head>
 <body>
 <div class="container">
     <h1>Edit Movie</h1>
-    <form action="/MovieManagement/movies" method="post">
+    <form action="movies" method="post">
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="${movie.id}">
 
@@ -29,14 +29,14 @@
 
         <div class="form-group">
             <label for="available">Available:</label>
-            <select id="available" name="available">
+            <select id="available" name="available" required>
                 <option value="true" ${movie.available ? 'selected' : ''}>Yes</option>
-                <option value="false" ${not movie.available ? 'selected' : ''}>No</option>
+                <option value="false" ${!movie.available ? 'selected' : ''}>No</option>
             </select>
         </div>
 
-        <button type="submit" class="btn">Update</button>
-        <a href="/MovieManagement/movies" class="btn danger">Cancel</a>
+        <button type="submit" class="btn">Update Movie</button>
+        <a href="movies" class="btn danger">Cancel</a>
     </form>
 </div>
 </body>

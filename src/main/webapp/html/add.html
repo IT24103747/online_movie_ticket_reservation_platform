@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Add Movie</title>
-    <link rel="stylesheet" href="/online_movie_ticket_reservation_platform/css/movie.css">
+    <link rel="stylesheet" href="/online_examination_system_war_exploded/css/movie.css">
 </head>
 <body>
 <div class="container">
@@ -27,14 +27,14 @@
 
         <div class="form-group">
             <label for="available">Available:</label>
-            <select id="available" name="available">
+            <select id="available" name="available" required>
                 <option value="true">Yes</option>
                 <option value="false">No</option>
             </select>
         </div>
 
         <button type="submit" class="btn">Add Movie</button>
-        <a href="${pageContext.request.contextPath}/movies" class="btn danger">Cancel</a>
+        <a href="movies" class="btn danger">Cancel</a>
     </form>
 </div>
 </body>

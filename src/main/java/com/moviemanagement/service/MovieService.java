@@ -1,13 +1,9 @@
 package com.moviemanagement.service;
 
 import com.moviemanagement.model.Movie;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
+import java.io.*;
+import java.util.*;
+import java.util.stream.*;
 
 public class MovieService {
     private List<Movie> movies;
@@ -17,10 +13,12 @@ public class MovieService {
             this.movies = FileService.loadMovies();
         } catch (IOException e) {
             this.movies = new ArrayList<>();
+            System.err.println("Error loading movies: " + e.getMessage());
         }
     }
 
     public void addMovie(Movie movie) throws IOException {
+        validateMovie(movie);
         movie.setId(UUID.randomUUID().toString());
         movies.add(movie);
         FileService.saveMovies(movies);
@@ -51,13 +49,19 @@ public class MovieService {
                 return;
             }
         }
-        throw new IllegalArgumentException("Movie not found with id: " + updatedMovie.getId());
     }
 
     public void deleteMovie(String id) throws IOException {
-        if (!movies.removeIf(m -> m.getId().equals(id))) {
-            throw new IllegalArgumentException("Movie not found with id: " + id);
-        }
+        movies.removeIf(m -> m.getId().equals(id));
         FileService.saveMovies(movies);
+    }
+
+    private void validateMovie(Movie movie) {
+        if (movie.getTitle() == null || movie.getTitle().trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be empty");
+        }
+        if (movie.getReleaseDate() == null) {
+            throw new IllegalArgumentException("Release date cannot be empty");
+        }
     }
 }
